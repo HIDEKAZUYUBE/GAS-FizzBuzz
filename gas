@@ -1,0 +1,34 @@
+function fizzBuzz() {
+  // スプレッドシートを取得します
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // シートを取得します
+  var sheet = ss.getSheets()[0];
+  
+  // 1から100までの数を順番に数え上げます
+  for (var i = 1; i <= 100; i++) {
+    // A列に数字を出力します
+    sheet.getRange(i, 1).setValue(i);
+    
+    // 3の倍数かどうかを判定します
+    var isFizz = (i % 3 == 0);
+    
+    // 5の倍数かどうかを判定します
+    var isBuzz = (i % 5 == 0);
+    
+    // B列にFizzBuzzの結果を出力します
+    if (isFizz && isBuzz) {
+      // 3の倍数かつ5の倍数の時は「FizzBuzz」を出力します
+      sheet.getRange(i, 2).setValue("FizzBuzz");
+    } else if (isFizz) {
+      // 3の倍数の時は「Fizz」を出力します
+      sheet.getRange(i, 2).setValue("Fizz");
+    } else if (isBuzz) {
+      // 5の倍数の時は「Buzz」を出力します
+      sheet.getRange(i, 2).setValue("Buzz");
+    } else {
+      // それ以外は数字をそのまま出力します
+      sheet.getRange(i, 2).setValue(i);
+    }
+  }
+}
